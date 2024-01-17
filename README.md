@@ -50,5 +50,17 @@ $ npm install react-dom@18.2.0
   -- acessar o diretório do arquivo e executar os comandos
 
   ```
-  $ docker compose -f infra/compose.yaml
+  $ docker compose -f infra/compose.yaml up
   ```
+
+# CLIENT POSTGRES
+
+- Instalar pacote
+
+  ```
+  $ npm install pg@8.11.3
+  ```
+
+- criar arquivo `\infra\database.js`
+  -- criar função de conexão e query com banco dados
+  -- acessar o diretório do arquivo e executar os comandos
