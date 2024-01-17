@@ -63,4 +63,10 @@ $ npm install react-dom@18.2.0
 
 - criar arquivo `\infra\database.js`
   -- criar função de conexão e query com banco dados
-  -- acessar o diretório do arquivo e executar os comandos
+
+# VARIÁVEIS DE AMBIENTE
+
+- criar arquivo `.env` na raiz do projeto
+  -- criar as variáveis de ambiente no arquivo
+  -- ajustar nos arquivos `\infra\database.js` e `\infra\compose.yaml`
+  -- alterar credencias de conexão com as variáveis ambiente
