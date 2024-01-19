@@ -70,3 +70,14 @@ $ npm install react-dom@18.2.0
   -- criar as variáveis de ambiente no arquivo
   -- ajustar nos arquivos `\infra\database.js` e `\infra\compose.yaml`
   -- alterar credencias de conexão com as variáveis ambiente
+
+# EXECUTAR SERVIÇOS SIMULTÂNEOS
+
+- Add no arquivo `packge.json` em `scripts`
+  `"dev": "npm run services:up && next dev",`
+
+# CAPTURANDO DADOS STATUS BANCO
+
+- Criando conexões e objetos retorno do status no arquivo `\page\api\v1\status\index.js`
+- Criando testes unitários para funcionalidades de retorno dados status
+- Criando proteção nas query do banco para evitar SQL Injection

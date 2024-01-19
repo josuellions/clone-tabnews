@@ -1,0 +1,60 @@
+Arguments: 
+  /home/josuel/.nvm/versions/node/v18.16.1/bin/node /usr/share/yarn/bin/yarn.js dev
+
+PATH: 
+  /home/josuel/bin:/usr/locla/bin:/home/josuel/.nvm/versions/node/v18.16.1/bin:/home/josuel/bin:/usr/locla/bin:/home/josuel/.zinit/polaris/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/josuel/Android/Sdk/tools/bin:/home/josuel/Android/Sdk/platform-tools:/home/josuel/Android/Sdk/emulator:/home/josuel/Android/Sdk/build-tools:/opt/gradle/gradle-6.0.1/bin:/home/josuel/.yarn/bin:/home/josuel/Android/Sdk/emulator:/home/josuel/Android/Sdk/tools:/home/josuel/Android/Sdk/tools/bin:/home/josuel/Android/Sdk/platform-tools:/home/josuel/Android/Sdk/build-tools:/opt/gradle/gradle-6.0.1/bin:info If you think this is a bug, please open a bug report with the information provided in "/media/josuel/Projetos Linux/Cursos/CursoDev/projetos-git/clone-tabnews/yarn-error.log".
+  info Visit https://yarnpkg.com/en/docs/cli/global for documentation about this command.:/home/josuel/Android/Sdk/emulator:/home/josuel/Android/Sdk/tools:/home/josuel/Android/Sdk/tools/bin:/home/josuel/Android/Sdk/platform-tools:/home/josuel/Android/Sdk/build-tools:/opt/gradle/gradle-6.0.1/bin
+
+Yarn version: 
+  1.22.5
+
+Node version: 
+  18.16.1
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /media/josuel/Projetos Linux/Cursos/CursoDev/projetos-git/clone-tabnews/package.json: Unexpected token / in JSON at position 0
+      at JSON.parse (<anonymous>)
+      at /usr/share/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/share/yarn/lib/cli.js:310:30)
+      at /usr/share/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  /*"dev": "npm run services:up && next dev",*/
+  {
+    "name": "clone-tabnews",
+    "version": "1.0.0",
+    "description": "Projeto clone tabnews filipe deshamps para estudo acadêmico do curso.dev",
+    "main": "index.js",
+    "scripts": {
+      "dev": "next dev",
+      "services:up": "docker compose -f infra/compose.yaml up - d",
+      "services:stop": "docker compose -f infra/compose.yaml stop",
+      "services:down": "docker compose -f infra/compose.yaml down",
+      "lint:check": "prettier --check .",
+      "lint:fix": "prettier --write .",
+      "test": "jest",
+      "test:watch": "jest --watchAll"
+    },
+    "author": "Josuel A. Lopes / Filipe Deshamps",
+    "license": "MIT",
+    "dependencies": {
+      "next": "^13.1.6",
+      "pg": "^8.11.3",
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+      "jest": "^29.6.2",
+      "prettier": "^2.8.8"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
