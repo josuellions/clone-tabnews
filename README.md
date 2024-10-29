@@ -97,3 +97,19 @@ $ npm install react-dom@18.2.0
 - Criando conexões e objetos retorno do status no arquivo `/page/api/v1/status/index.js`
 - Criando testes unitários para funcionalidades de retorno dados status
 - Criando proteção nas query do banco para evitar SQL Injection
+
+##### MIGRATIONS
+
+- Gerenciando versionamento de ajuste e alterações no banco dados com migrations
+
+```
+npm i node-pg-migrate@6.2.2
+```
+
+##### VARIÁVEIS DE AMBIENTE COM dotenv
+
+- Criando variáveis de ambiente com dotenv para ambiente de desenvolvimento, homologação e produção
+
+```
+npm i dotenv@16.4.4
+```
