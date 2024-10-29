@@ -1,7 +1,7 @@
 function Home() {
   return (
     <>
-      <h1>Projeto acadêmico</h1>
+      <h1>Projeto acadêmico - Staging</h1>
       <a href="https://www.tabnews.com.br/" target="_blank">
         <h2>Clone tabnew</h2>
       </a>
