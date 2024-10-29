@@ -112,4 +112,5 @@ npm i node-pg-migrate@6.2.2
 
 ```
 npm i dotenv@16.4.4
+npm i dotenv-expand@11.0.6
 ```
