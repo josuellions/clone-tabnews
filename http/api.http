@@ -1,0 +1,34 @@
+# @name status-conection
+GET http://localhost:3000/api/v1/status
+
+###
+
+# @name exec-simulation-migrations
+GET http://localhost:3000/api/v1/migrations
+
+###
+
+# @name exec-test-migrations
+PUT http://localhost:3000/api/v1/migrations
+
+###
+
+# @name exec-efect-migrations
+POST http://localhost:3000/api/v1/migrations
+
+###
+
+## PRODUCAO
+# @name status-conection
+GET https://clone-tabnews.maxcode42.com.br/api/v1/status
+
+###
+
+# @name exec-simulation-migrations
+GET https://clone-tabnews.maxcode42.com.br/api/v1/migrations
+
+###
+# @name exec-efect-migrations-production
+POST https://clone-tabnews.maxcode42.com.br/api/v1/migrations
+
+###
