@@ -125,3 +125,39 @@ npm i dotenv-expand@11.0.6
 > Executando scripts
 
 - node:child_process
+
+> Concorrente e Orquestrador JEST e NEXTJS
+
+- Subir os serviços de forma concorrentes (lado a lado)
+
+-- Adiciona no arquivo `package.json` em scripts:
+
+```
+"test": "npm run services:up && npm run wait-for-postgres && concurrently --names next,jest --hide next --kill-others --success command-jest 'next dev' 'jest --runInBand' ",
+```
+
+- usar sleep para simular delay para efeito de testes
+
+```
+"test": "npm run services:up && npm run wait-for-postgres && concurrently --names next,jest --hide next --kill-others --success command-jest 'sleep 1; next dev' 'jest --runInBand' ",
+```
+
+- Instalar:
+
+```
+npm i concurrently -D
+```
+
+- Orquestrador
+
+-- Gerenciar a inicialização dos serviços
+
+--- Criar arquivos `./tests/orchestrator.js`
+
+```
+npm i async-retry@1.3.3
+```
+
+- Ajustar o timeout do JEST em `./jest.config.js`
+
+##### END
