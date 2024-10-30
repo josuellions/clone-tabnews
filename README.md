@@ -114,3 +114,14 @@ npm i node-pg-migrate@6.2.2
 npm i dotenv@16.4.4
 npm i dotenv-expand@11.0.6
 ```
+
+##### CI - Continuous Integration
+
+- Estabilizando ambiente e testes locais para implementação do CI
+
+-- Criando script para inicializar os serviços ambiente local em `./infra/scripts/wait-for-postgres.js`
+--- Criar comando para rodar script no arquivo `./package.json`
+
+> Executando scripts
+
+- node:child_process
