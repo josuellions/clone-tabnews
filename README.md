@@ -160,4 +160,16 @@ npm i async-retry@1.3.3
 
 - Ajustar o timeout do JEST em `./jest.config.js`
 
+> Workflow (Testes Automatizados)
+
+```text
+|-Workflow (Testes Automatizados)
+| |-Event: "Pull Request"
+| | |-Job: "Jest"
+| | | |-Runner: "Ubuntu"
+| | | |- |-Step: "Instalar dependências"
+| | | |- |-Step: "Rodar bateria de testes"
+
+```
+
 ##### END
