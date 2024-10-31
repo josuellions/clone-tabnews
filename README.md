@@ -181,7 +181,7 @@ npm next lint
 npm i -D eslint@8.57.0
 npm i -D eslint-config-next@14.2.4
 npm i -D eslint-plugin-jest@28.6.0
-npm i -D eslint-config-prettier@28.6.0
+npm i -D eslint-config-prettier@9.1.0
 ```
 
 ##### END
