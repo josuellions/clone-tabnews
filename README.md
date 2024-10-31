@@ -184,4 +184,37 @@ npm i -D eslint-plugin-jest@28.6.0
 npm i -D eslint-config-prettier@9.1.0
 ```
 
+> Lint
+
+- Texto padronizado para commits
+
+> Commits Padronização
+
+- Conventional commits
+
+- `https://commitlint.js.org/`
+- `https://www.conventionalcommits.org/en/v1.0.0/`
+- `https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines`
+
+- Instalar
+
+```
+npm i -D @commitlint/cli@19.3.0
+npm i -D @commitlint/config-conventional@19.2.2
+```
+
+- Criar arquivos na raiz do projeto: `commitlint.config.js`
+
+- Criar commits usando o `commitlint`
+
+- exemplos:
+
+```
+npx commitlint
+echo "teste" | npx commitlint
+echo "teste: mensagem principal" | npx commitlint
+echo "feat: mensagem principal" | npx commitlint
+echo "feat: (escopo): mensagem principal" | npx commitlint
+```
+
 ##### END
