@@ -253,6 +253,14 @@ npm run commit
 npm outdated
 npm audit
 npm i
+npx npm-check-updates -i
+```
+
+- Resolução conflito dependências
+
+```
+rm -rf package-lock.json node_modules/
+npm i
 ```
 
 ##### END
