@@ -174,7 +174,7 @@ npm i async-retry@1.3.3
 
 > ESlint
 
-- Padronização qualidade e padronização código
+- Padronização e qualidade do código
 
 ```
 npm next lint
@@ -219,11 +219,29 @@ echo "feat: (escopo): mensagem principal" | npx commitlint
 
 - HUSKY: Hooks de commits
 
+-- Validação na padronização do formato da mensagem do commit
+
 ```
 npm i -D husky@9.1.4
 npx husky init
 ```
 
-- criar arquivo `.husky/commit-msg`
+-- criar arquivo `.husky/commit-msg`
+
+- Commitizen
+
+-- Opções dos tipos de padronização do commit
+
+```
+npm i -D commitizen@4.3.0
+npx commitizen init cz-conventional-changelog --save-dev --save-exact
+```
+
+-- Adicionar no `package.json` linha `"commit": "cz"` em scripts
+
+```
+git add -A
+npm run commit
+```
 
 ##### END
