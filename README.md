@@ -217,4 +217,13 @@ echo "feat: mensagem principal" | npx commitlint
 echo "feat: (escopo): mensagem principal" | npx commitlint
 ```
 
+- HUSKY: Hooks de commits
+
+```
+npm i -D husky@9.1.4
+npx husky init
+```
+
+- criar arquivo `.husky/commit-msg`
+
 ##### END
