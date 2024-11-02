@@ -16,10 +16,10 @@ async function status(req, res) {
       databaseVersionResult.rows[0].server_version.split(" ")[0];
 
     const databaseMaxConnectionResult = await database.query(
-      "SHOW max_connections"
+      "SHOW max_connections",
     );
     const databaseMaxConnectionValue = parseInt(
-      databaseMaxConnectionResult.rows[0].max_connections
+      databaseMaxConnectionResult.rows[0].max_connections,
     );
 
     const databaseName = process.env.POSTGRES_DB;
@@ -35,7 +35,7 @@ async function status(req, res) {
       values: [databaseName],
     });
     const databaseOpenConnectionsValue = parseInt(
-      databaseOpenConnectionsResult.rows[0].count
+      databaseOpenConnectionsResult.rows[0].count,
     );
 
     /**INICIO - TESTE Sql Injection */

@@ -54,7 +54,7 @@ test("Dividir 0 por 0 deve retornar 'Erro'", () => {
   const resultado = calculadora.dividir(0, 0);
 
   expect(resultado).toBe(
-    "Erro: valor do primeiro número deve ser maior que 0 (ZERO)"
+    "Erro: valor do primeiro número deve ser maior que 0 (ZERO)",
   );
 });
 
@@ -66,7 +66,7 @@ test("Dividir 0 por 5 deve retornar 'Erro'", () => {
 test("Dividir 15 por 0 deve retornar 'Erro'", () => {
   const resultado = calculadora.dividir(15, 0);
   expect(resultado).toBe(
-    "Erro: valor do segundo número deve ser maior que 0 (ZERO)"
+    "Erro: valor do segundo número deve ser maior que 0 (ZERO)",
   );
 });
 

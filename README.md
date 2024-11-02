@@ -244,4 +244,23 @@ git add -A
 npm run commit
 ```
 
+> Atualizações de dependências dos packages
+
+- Atualizando os versionamentos e dependências do pacotes do projeto
+  -- Depois de verificar os packages com `npm` no arquivo `package.json` remover dos pacotes a carácter " ^ " para trava a restrição de atualização dos pacotes
+
+```
+npm outdated
+npm audit
+npm i
+npx npm-check-updates -i
+```
+
+- Resolução conflito dependências
+
+```
+rm -rf package-lock.json node_modules/
+npm i
+```
+
 ##### END
