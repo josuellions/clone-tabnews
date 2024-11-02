@@ -1,4 +1,5 @@
 import retry from "async-retry";
+import database from "infra/database";
 
 const STATUS_SUCCESS = 200;
 
@@ -25,8 +26,13 @@ async function waitForAllServices() {
   await waitForWebServices();
 }
 
+async function clearDatabase() {
+  await database.query("drop schema public cascade; create schema public;");
+}
+
 const orchestrator = {
   waitForAllServices,
+  clearDatabase,
 };
 
 export default orchestrator;
