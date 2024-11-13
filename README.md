@@ -1,266 +1,321 @@
 ### CURSO - curso.dev
 
-#### Data Inicio: 20/06/2023
-
-##### Educator: Filipe Deschamps
+##### Data Inicio: 20/06/2023
 
 ##### Developer: Josuel A. Lopes
 
-#### About
+##### About
 
-Desenvolvimento de uma aplicação clone do `https://www.tabnews.com.br/` para agregar conhecimento e habilidades técnicas reproduzindo representação de um projeto real e profissional.
+Desenvolvimento de uma aplicação clone do <a href="https://www.tabnews.com.br"> tabnews.com.br</a> para agregar conhecimento e habilidades técnicas reproduzindo representação de um projeto real e profissional.
+Projeto clone tabnews do educator:<a href="https://github.com/filipedeschamps"> Filipe Deschamps</a> para estudo acadêmico no <a href="https://curso.dev/">curso.dev</a>, com as tecnologias e padronizações desenvolvimento de softwares.
 
-#### clone-tabnew
+- ReactJS,
+- NextJS,
+- NodeJS,
+- Prettier,
+- ESLint
+- Docker
+- Jest,
+- CI
 
-Projeto clone tabnews `filipe deschamps` para estudo acadêmico no `curso.dev`
+#### Projeto: Clone tabnews
 
-##### Ambiente
+</br>
 
-> Node v18.16.1
+#### 📋 Sumário
 
-- Definir nvm padrão no projeto
+---
 
-- Criar um arquivo ".nvmrc" na raiz do projeto e colocar o nome da versão do node ex.: "lts/hydrogen"
+- [📋 Sumário](#-sumário)
+- [📂 Arquitetura e diretórios](#-arquitetura-e-diretórios)
+- [📦 Pacotes](#-pacotes)
+- [🧰 Dependências](#-dependências)
+- [♻️ Variáveis de Ambiente](#-variáveis-de-ambiente)
+- [🔥 Como executar](#-como-executar)
+- [📑 Padronização](#-padronização)
+- [🧪 Testes](#-testes)
+- [⚙️ CI/CD](#-CI/CD)
+- [🚀 Build](#-build)
+- [🔖 Version](#-version)
+- [📜 Licença](#-licença)
 
-```
-$ nvm install lts/hydrogen
-$ nvm use 18.16.1
-```
+#### 📂 Arquitetura e diretórios
 
-> NextJS
+---
 
-- Criar manifesto do projeto com `package.json`
+- MVC (Model View Controller)
 
-```
-$ npm init
-$ npm install next@13.1.6
-```
-
-> React
-
-```
-$ npm install react@18.2.0
-$ npm install react-dom@18.2.0
-```
-
-> Criando estrutura do projeto
-
-- Criar diretório `/pages/index.js`
-
-##### CURL
-
-- Testes para visualizar o dados HTTP
-
-  ```
-  curl http://localhost:3000/api/status -v
-  ```
-
-##### DOCKER POSTGRES
-
-- criar arquivo `/infra/compose.yaml`
-
-  -- criar parâmetros de configurações do docker no arquivo criado
-
-  -- acessar o diretório do arquivo e executar os comandos
-
-  ```
-  $ docker compose -f infra/compose.yaml up
-  ```
-
-##### CLIENT POSTGRES
-
-- Instalar pacote
-
-  ```
-  $ npm install pg@8.11.3
-  ```
-
-- criar arquivo `/infra/database.js`
-
-  -- criar função de conexão e query com banco dados
-
-##### VARIÁVEIS DE AMBIENTE
-
-- criar arquivo `.env` na raiz do projeto
-  -- criar as variáveis de ambiente no arquivo
-  -- ajustar nos arquivos `/infra/database.js` e `/infra/compose.yaml`
-  -- alterar credencias de conexão com as variáveis ambiente
-
-##### EXECUTAR SERVIÇOS SIMULTÂNEOS
-
-- Add no arquivo `packge.json` em `scripts`
-
-  `"dev": "npm run services:up && next dev",`
-
-##### CAPTURANDO DADOS STATUS BANCO DADOS
-
-- Criando conexões e objetos retorno do status no arquivo `/page/api/v1/status/index.js`
-- Criando testes unitários para funcionalidades de retorno dados status
-- Criando proteção nas query do banco para evitar SQL Injection
-
-##### MIGRATIONS
-
-- Gerenciando versionamento de ajuste e alterações no banco dados com migrations
-
-```
-npm i node-pg-migrate@6.2.2
-```
-
-##### VARIÁVEIS DE AMBIENTE COM dotenv
-
-- Criando variáveis de ambiente com dotenv para ambiente de desenvolvimento, homologação e produção
-
-```
-npm i dotenv@16.4.4
-npm i dotenv-expand@11.0.6
-```
-
-##### CI - Continuous Integration
-
-- Estabilizando ambiente e testes locais para implementação do CI
-
--- Criando script para inicializar os serviços ambiente local em `./infra/scripts/wait-for-postgres.js`
---- Criar comando para rodar script no arquivo `./package.json`
-
-> Executando scripts
-
-- node:child_process
-
-> Concorrente e Orquestrador JEST e NEXTJS
-
-- Subir os serviços de forma concorrentes (lado a lado)
-
--- Adiciona no arquivo `package.json` em scripts:
-
-```
-"test": "npm run services:up && npm run wait-for-postgres && concurrently --names next,jest --hide next --kill-others --success command-jest 'next dev' 'jest --runInBand' ",
-```
-
-- usar sleep para simular delay para efeito de testes
-
-```
-"test": "npm run services:up && npm run wait-for-postgres && concurrently --names next,jest --hide next --kill-others --success command-jest 'sleep 1; next dev' 'jest --runInBand' ",
-```
-
-- Instalar:
-
-```
-npm i concurrently -D
-```
-
-- Orquestrador
-
--- Gerenciar a inicialização dos serviços
-
---- Criar arquivos `./tests/orchestrator.js`
-
-```
-npm i async-retry@1.3.3
-```
-
-- Ajustar o timeout do JEST em `./jest.config.js`
-
-> Workflow (Testes Automatizados)
-
-```text
-|-Workflow (Testes Automatizados)
-| |-Event: "Pull Request"
-| | |-Job: "Jest"
-| | | |-Runner: "Ubuntu"
-| | | |- |-Step: "Instalar dependências"
-| | | |- |-Step: "Rodar bateria de testes"
+```txt
+  📦 root
+  ┣ 📂 pages
+  ┃ ┗ 📜 index.js
+  ┣ 📂 models
+  ┃ ┣ 📜 user.js
+  ┃ ┣ 📜 content.js
+  ┃ ┗ 📜 password.js
+  ┣ 📂 infra
+  ┃ ┗ 📜 database.js
+  ┃ ┣ 📂 migrations
+  ┃ ┣ 📂 provisioning
+  ┃ ┃ ┣ 📂 staging
+  ┃ ┃ ┣ 📂 production
+  ┣ 📂 tests
 
 ```
 
-> ESlint
+#### 📦 Pacotes
 
-- Padronização e qualidade do código
+---
 
-```
-npm next lint
-npm i -D eslint@8.57.0
-npm i -D eslint-config-next@14.2.4
-npm i -D eslint-plugin-jest@28.6.0
-npm i -D eslint-config-prettier@9.1.0
-```
+- Versão do node
 
-> Lint
+- - `lts/hydrogen`
 
-- Texto padronizado para commits
+- Padronização do código
 
-> Commits Padronização
+- - Configurações
+- - - `.github/workflows/linting.yaml`
+- - - `.github/workflows/tests.yaml`
+- - - `.husky/commit-msg`
+- - - `infra/compose.yaml`
+- - - `commitlint.config.js`
+- - - `.prettierignore`
+- - - `.eslintrc.json`
+- - - `jest.config.js`
+- - - `.editorconfig`
+- - - `jsconfig.js`
+- - - `.gitignore`
+- - - `.nvmrc`
+-
+- [npm](https://docs.npmjs.com/cli/v10/commands/npm): v10.8.2 - npm is the package manager for the Node JavaScript platform. It puts modules in place so that node can find them, and manages dependency conflicts intelligently.
 
-- Conventional commits
+- [Node.js](https://nodejs.org/en): v18.20.4 - Node.js® is a free, open-source, cross-platform JavaScript runtime environment that lets developers create servers, web apps, command line tools and scripts.
 
-- `https://commitlint.js.org/`
-- `https://www.conventionalcommits.org/en/v1.0.0/`
-- `https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines`
+- [Next.js](https://nextjs.org/) - Used by some of the world's largest companies, Next.js enables you to create high-quality web applications with the power of React components.
 
-- Instalar
+- [React](https://react.dev/) - The library for web and native user interfaces
 
-```
-npm i -D @commitlint/cli@19.3.0
-npm i -D @commitlint/config-conventional@19.2.2
-```
+- [ESLint](https://eslint.org/) - Static code analysis to help find problems within a codebase
 
-- Criar arquivos na raiz do projeto: `commitlint.config.js`
+- [Prettier](https://prettier.io/) - An opinionated code formatter
 
-- Criar commits usando o `commitlint`
+- [Commitlint](https://github.com/conventional-changelog/commitlint#readme) - Lint commit messages
 
-- exemplos:
+- [Commitizen](https://github.com/commitizen/cz-cli#readme) - The commitizen command line utility
 
-```
-npx commitlint
-echo "teste" | npx commitlint
-echo "teste: mensagem principal" | npx commitlint
-echo "feat: mensagem principal" | npx commitlint
-echo "feat: (escopo): mensagem principal" | npx commitlint
-```
+- [Husky](https://github.com/typicode/husky#readme) - Git hooks made easy 🐶 woof!
 
-- HUSKY: Hooks de commits
+- [Docker](https://hub.docker.com/_/postgres) - Docker Hub is the world's easiest way to create, manage, and deliver your team's container applications.
 
--- Validação na padronização do formato da mensagem do commit
+- [Jest](https://jestjs.io/) - Jest is a delightful JavaScript Testing Framework with a focus on simplicity.
 
-```
-npm i -D husky@9.1.4
-npx husky init
-```
+- [CI/CD](https://github.com/features/actions) - GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD. Build, test, and deploy your code right from GitHub. Make code reviews, branch management, and issue triaging work the way you want.
 
--- criar arquivo `.husky/commit-msg`
+-
+- Atualização de pacotes
 
-- Commitizen
-
--- Opções dos tipos de padronização do commit
-
-```
-npm i -D commitizen@4.3.0
-npx commitizen init cz-conventional-changelog --save-dev --save-exact
+```bash
+npm audit
+npm outdated
+npx npm-check-updates -i
 ```
 
--- Adicionar no `package.json` linha `"commit": "cz"` em scripts
+#### 🧰 Dependências
 
+---
+
+- Docker
+- - Docker Compose
+- - - Criar e inicializar
+
+```bash
+docker compose --file infra/compose.yaml -d up
+docker ps
 ```
+
+ou
+
+```bash
+npm run services:up
+```
+
+- - - Para ou excluir
+
+```bash
+docker compose --file infra/compose.yaml down
+docker ps -a
+```
+
+ou
+
+```bash
+npm run services:down
+```
+
+- Banco Dados
+
+- - Postgres (DBMS - Banco Dados relacional)
+
+- - - node-pg-migrate (Migrations)
+
+- - - pg (Query/Consultas)
+
+```bash
+npm run migrations:create
+npm run migrations:up
+```
+
+#### ♻️ Variáveis de Ambiente
+
+---
+
+- Certifique-se de ter configurado o arquivo `.env` ou `.env.development` na raiz do projeto baseado no arquivo `.env.example`, com as variáveis de ambiente necessárias para execução do projeto.
+
+- Caso você não tenha acesso aos valores, solicite ao responsável pelo projeto.
+
+#### 🔥 Como executar
+
+- Realize o clone ou baixe o projeto localmente.
+
+- - Instalar ou atualizar os pacotes e dependências
+
+```bash
+npm install
+```
+
+- - Para executar o projeto em modo de desenvolvimento.
+
+```bash
+npm run dev
+```
+
+- - Para executar o projeto em modo de produção e homologação.
+
+```bash
+npm run start
+```
+
+#### 📑 Padronização
+
+---
+
+- Estilização do código com `Prettier`
+
+- - Analisar e verificar
+
+```bash
+npm run lint:prettier:check
+```
+
+- - Corrigir e ajustar
+
+```bash
+npm run lint:prettier:fix
+```
+
+- Qualidade do código `ESLint`
+
+```bash
+npm run lint:eslint:check
+```
+
+- Qualidade do commit `Commitlint`
+
+```bash
+npx  commitlint
+```
+
+- Qualidade do commit com Hooks `Husky` e `Commitizen`
+
+```bash
 git add -A
 npm run commit
 ```
 
-> Atualizações de dependências dos packages
+#### 🧪 Testes
 
-- Atualizando os versionamentos e dependências do pacotes do projeto
-  -- Depois de verificar os packages com `npm` no arquivo `package.json` remover dos pacotes a carácter " ^ " para trava a restrição de atualização dos pacotes
+---
 
-```
-npm outdated
-npm audit
-npm i
-npx npm-check-updates -i
-```
+- Teste Automatizados / Teste Integração
 
-- Resolução conflito dependências
+- - TDD (Test Driven Development)
 
-```
-rm -rf package-lock.json node_modules/
-npm i
+- - - Teste Runner (Jest)
+
+- - Para executar o projeto em modo de test.
+
+```bash
+npm run test
 ```
 
-##### END
+ou
+
+```bash
+npm run test:watch
+```
+
+#### ⚙️ CI/CD
+
+---
+
+- Github Actions (workflow) fluxo de continuous integrations e continuous deploy
+- - O fluxo é realizado a cada pull request realizado para branch definida no projeto.
+
+```txt
+|-Workflow (Testes Automatizados)
+| |-Event: "Pull Request"
+| | |-Job: "Jest"
+| | | |-Runner: "Ubuntu"
+| | | | |-Step: "Instalar dependências"
+| | | | |-Step: "Rodar bateria de testes"
+
+```
+
+- Actions
+- - Jest Ubuntu
+- - Commitlint
+- - Prettier
+- - ESLint
+
+#### 🚀 Build
+
+---
+
+Para gerar o build do projeto deve-se abrir no `Visual Code` gerando os arquivos e build da aplicação
+
+```bash
+npm build
+```
+
+#### 🔖 Version
+
+---
+
+- Padronização da estrutura de versionamento
+- - Semantic Versioning:
+
+- - `path`: Ajustes, melhorias e correções que não alteram as funcionalidades e comportamento.
+
+- - `minor`: Alterações nas funcionalidades, mas que são compatíveis entre versões e mantendo a total compatibilidade de funcionalidades e comportamento.
+
+- - `major`: Novas funcionalidades ou alterações que modifica o comportamento, e que podem não ser mais compatíveis com versões anteriores.
+
+- - Exemplo:
+
+```txt
+[  ]. [  ].[  ]
+
+major.minor.patch
+
+2.1.0
+```
+
+#### 📜 Licença
+
+---
+
+Este repositório e projeto possui licença `MIT license`, para maiores informações:
+
+- [License Project ](https://github.com/josuellions/clone-tabnews?tab=MIT-1-ov-file#readme)
+
+- [GitHub Licenses](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository#:~:text=You%27re%20under%20no%20obligation%20to%20choose%20a%20license.%20However%2C%20without%20a%20license%2C%20the%20default%20copyright%20laws%20apply%2C%20meaning%20that%20you%20retain%20all%20rights%20to%20your%20source%20code%20and%20no%20one%20may%20reproduce%2C%20distribute%2C%20or%20create%20derivative%20works%20from%20your%20work.).
