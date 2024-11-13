@@ -6,7 +6,7 @@
 
 ##### About
 
-Desenvolvimento de uma aplicação clone do <a href="https://www.tabnews.com.br"> tabnews.com.br</a> para agregar conhecimento e habilidades técnicas reproduzindo representação de um projeto real e profissional.
+Desenvolvimento de uma aplicação clone do <a href="https://www.tabnews.com.br"> tabnews.com.br</a> para agregar conhecimento e habilidades técnicas reproduzindo a representação de um projeto real e profissional.
 Projeto clone tabnews do educator:<a href="https://github.com/filipedeschamps"> Filipe Deschamps</a> para estudo acadêmico no <a href="https://curso.dev/">curso.dev</a>, com as tecnologias e padronizações desenvolvimento de softwares.
 
 - ReactJS,
@@ -17,6 +17,8 @@ Projeto clone tabnews do educator:<a href="https://github.com/filipedeschamps"> 
 - Docker
 - Jest,
 - CI
+
+<br/>
 
 #### Projeto: Clone tabnews
 
@@ -38,6 +40,8 @@ Projeto clone tabnews do educator:<a href="https://github.com/filipedeschamps"> 
 - [🚀 Build](#-build)
 - [🔖 Version](#-version)
 - [📜 Licença](#-licença)
+
+<br/>
 
 #### 📂 Arquitetura e diretórios
 
@@ -62,6 +66,8 @@ Projeto clone tabnews do educator:<a href="https://github.com/filipedeschamps"> 
   ┣ 📂 tests
 
 ```
+
+<br/>
 
 #### 📦 Pacotes
 
@@ -120,6 +126,8 @@ npm outdated
 npx npm-check-updates -i
 ```
 
+<br/>
+
 #### 🧰 Dependências
 
 ---
@@ -165,6 +173,8 @@ npm run migrations:create
 npm run migrations:up
 ```
 
+<br/>
+
 #### ♻️ Variáveis de Ambiente
 
 ---
@@ -173,7 +183,11 @@ npm run migrations:up
 
 - Caso você não tenha acesso aos valores, solicite ao responsável pelo projeto.
 
+<br/>
+
 #### 🔥 Como executar
+
+---
 
 - Realize o clone ou baixe o projeto localmente.
 
@@ -194,6 +208,8 @@ npm run dev
 ```bash
 npm run start
 ```
+
+<br/>
 
 #### 📑 Padronização
 
@@ -232,6 +248,8 @@ git add -A
 npm run commit
 ```
 
+<br/>
+
 #### 🧪 Testes
 
 ---
@@ -253,6 +271,8 @@ ou
 ```bash
 npm run test:watch
 ```
+
+<br/>
 
 #### ⚙️ CI/CD
 
@@ -277,6 +297,8 @@ npm run test:watch
 - - Prettier
 - - ESLint
 
+<br/>
+
 #### 🚀 Build
 
 ---
@@ -286,6 +308,8 @@ Para gerar o build do projeto deve-se abrir no `Visual Code` gerando os arquivos
 ```bash
 npm build
 ```
+
+<br/>
 
 #### 🔖 Version
 
@@ -309,6 +333,8 @@ major.minor.patch
 
 2.1.0
 ```
+
+<br/>
 
 #### 📜 Licença
 
