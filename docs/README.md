@@ -263,4 +263,12 @@ rm -rf package-lock.json node_modules/
 npm i
 ```
 
+> Instalar SWR
+
+- Realiza requisições em tempo real evitando request sequenciais e simultâneas, utilizando do Huck de cache
+
+```bash
+npm i -E swr@2.2.5
+```
+
 ##### END
