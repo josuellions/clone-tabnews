@@ -33,9 +33,11 @@ async function query(queryObject) {
 
     return result;
   } catch (error) {
+    console.log("\n Error no cath do database.js:");
     console.log(error);
+    throw error;
   } finally {
-    await client.end();
+    await client?.end();
   }
 }
 

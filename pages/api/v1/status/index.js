@@ -1,4 +1,5 @@
 import database from "infra/database.js";
+import { InternalServerError } from "infra/errors";
 /* TESTES V1
 async function status(req, res) {
   const result = await database.query("SELECT 1 + 1 as sum;");
@@ -70,7 +71,14 @@ async function status(req, res) {
       },
     });
   } catch (error) {
-    console.log(error);
+    const publicErrorObject = new InternalServerError({
+      cause: error,
+    });
+    console.log("\n Error no cath do controller:");
+    console.log(publicErrorObject);
+    //console.log(error);
+
+    res.status(500).json(publicErrorObject);
   }
 }
 
