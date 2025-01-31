@@ -1,5 +1,7 @@
 import { Client } from "pg";
 
+import { ServiceError } from "./errors";
+
 function getSSLValue() {
   if (process.env.POSTGRES_CA) {
     return {
@@ -33,9 +35,15 @@ async function query(queryObject) {
 
     return result;
   } catch (error) {
-    console.log("\n Error no cath do database.js:");
-    console.log(error);
-    throw error;
+    const serviceErrorObject = new ServiceError({
+      message: "Error na conexão com Banco dados ou na Query.",
+      cause: error,
+    });
+    // name: "",
+    // action: "",
+    // statusCode: 405,
+
+    throw serviceErrorObject;
   } finally {
     await client?.end();
   }
