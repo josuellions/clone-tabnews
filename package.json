@@ -1,7 +1,7 @@
 {
   "name": "clone-tabnews",
   "version": "1.0.0",
-  "description": "Projeto clone tabnews filipe deshamps para estudo acadêmico do curso.dev",
+  "description": "Projeto clone tabnews filipe deschamps para estudo acadêmico do curso.dev",
   "main": "index.js",
   "scripts": {
     "predev": "",
@@ -35,7 +35,8 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "remove": "0.1.5",
-    "swr": "2.2.5"
+    "swr": "2.2.5",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "19.5.0",
