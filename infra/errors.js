@@ -26,8 +26,25 @@ export class MethodNotAllowedError extends Error {
     this.action = "Verifique se o método HTTP é válido para este endpoint.";
     this.statusCode = 405;
   }
-  //Defining what returns in the custom error list
-  //Definindo o que retorna na lista de erros customizados
+  toJSON() {
+    return {
+      name: this.name,
+      message: this.message,
+      action: this.action,
+      status_code: this.statusCode,
+    };
+  }
+}
+
+export class ValidationError extends Error {
+  constructor({ cause, message, action }) {
+    super(message || "Um error de validação ocorreu.", {
+      cause,
+    });
+    this.name = "ValidationError";
+    this.action = action || "Ajuste os dados enviados e tente novamente.";
+    this.statusCode = 400;
+  }
   toJSON() {
     return {
       name: this.name,
@@ -47,8 +64,6 @@ export class ServiceError extends Error {
     this.action = "Verifique se o serviço está disponível.";
     this.statusCode = 503;
   }
-  //Defining what returns in the custom error list
-  //Definindo o que retorna na lista de erros customizados
   toJSON() {
     return {
       name: this.name,
