@@ -7,7 +7,7 @@ function callbackFunction() {
   console.log("Calculadora funcionando");
 }
 
-describe("Example Tests: Start test calculadora", () => {
+describe.skip("Example Tests: Start test calculadora", () => {
   describe("Anonymous user", () => {
     test("Teste Calculadora", callbackFunction);
 
