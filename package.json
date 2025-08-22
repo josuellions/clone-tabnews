@@ -1,7 +1,7 @@
 {
   "name": "clone-tabnews",
   "version": "1.0.0",
-  "description": "Projeto clone tabnews filipe deshamps para estudo acadêmico do curso.dev",
+  "description": "Projeto clone tabnews filipe deschamps para estudo acadêmico do curso.dev",
   "main": "index.js",
   "scripts": {
     "predev": "",

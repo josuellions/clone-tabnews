@@ -8,7 +8,8 @@ const defaultMigrationOptions = {
   migrationsTable: "pgmigrations",
   direction: "up",
   dryRun: true,
-  verbose: true,
+  //verbose: true,
+  log: () => {}, //Oculta os logs
 };
 
 async function listPendingMigrations() {
