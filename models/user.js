@@ -24,6 +24,33 @@ async function runInsertQuery(userInputValues) {
   return result.rows[0];
 }
 
+async function runUpdateQuery(userWithNewValues) {
+  const result = await database.query({
+    text: `
+      UPDATE 
+        users
+      SET
+        username = $2,
+        email = $3,
+        password = $4,
+        updated_at = timezone('utc', now())
+      WHERE
+        id = $1
+      RETURNING
+        *
+      ;
+      `,
+    values: [
+      userWithNewValues.id,
+      userWithNewValues.username,
+      userWithNewValues.email,
+      userWithNewValues.password,
+    ],
+  });
+
+  return result.rows[0];
+}
+
 async function validateUniqueEmail(email) {
   const result = await database.query({
     text: `
@@ -40,7 +67,7 @@ async function validateUniqueEmail(email) {
   if (result.rowCount > 0) {
     throw new ValidationError({
       message: "O email informado já está cadastrado.",
-      action: "Informe outro email para realizar o cadastro.",
+      action: "Informe outro email para realizar esta operação.",
     });
   }
 }
@@ -61,7 +88,7 @@ async function validateUniqueUsername(username) {
   if (result.rowCount > 0) {
     throw new ValidationError({
       message: "O username informado já está cadastrado.",
-      action: "Informe outro username para realizar o cadastro.",
+      action: "Informe outro username para realizar esta operação.",
     });
   }
 }
@@ -97,10 +124,16 @@ async function runSelectQuery(username) {
   return result.rows[0];
 }
 
+async function findOneByUserName(username) {
+  const userFound = await runSelectQuery(username);
+
+  return userFound;
+}
+
 async function create(userInputValues) {
   //regras de negocio
-  await validateUniqueEmail(userInputValues.email);
   await validateUniqueUsername(userInputValues.username);
+  await validateUniqueEmail(userInputValues.email);
   await hashPasswordInObject(userInputValues);
 
   const newUser = await runInsertQuery(userInputValues);
@@ -108,14 +141,31 @@ async function create(userInputValues) {
   return newUser;
 }
 
-async function findOneByUserName(username) {
-  const userFound = await runSelectQuery(username);
+async function update(username, userInputValues) {
+  const currentUser = await findOneByUserName(username);
 
-  return userFound;
+  if ("username" in userInputValues) {
+    await validateUniqueUsername(userInputValues.username);
+  }
+
+  if ("email" in userInputValues) {
+    await validateUniqueEmail(userInputValues.email);
+  }
+
+  if ("password" in userInputValues) {
+    await hashPasswordInObject(userInputValues);
+  }
+
+  const userWithNewValues = { ...currentUser, ...userInputValues };
+
+  const updateUser = await runUpdateQuery(userWithNewValues);
+
+  return updateUser;
 }
 
 const user = {
   create,
+  update,
   findOneByUserName,
 };
 

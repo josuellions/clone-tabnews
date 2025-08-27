@@ -99,7 +99,7 @@ describe("POST to /api/v1/users", () => {
       expect(response2Body).toEqual({
         name: "ValidationError",
         message: "O email informado já está cadastrado.",
-        action: "Informe outro email para realizar o cadastro.",
+        action: "Informe outro email para realizar esta operação.",
         status_code: 400,
       });
     });
@@ -138,7 +138,7 @@ describe("POST to /api/v1/users", () => {
       expect(response2Body).toEqual({
         name: "ValidationError",
         message: "O username informado já está cadastrado.",
-        action: "Informe outro username para realizar o cadastro.",
+        action: "Informe outro username para realizar esta operação.",
         status_code: 400,
       });
     });
