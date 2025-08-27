@@ -28,7 +28,38 @@ GET https://clone-tabnews.maxcode42.com.br/api/v1/status
 GET https://clone-tabnews.maxcode42.com.br/api/v1/migrations
 
 ###
-# @name exec-efect-migrations-production
+# @name exec-effect-migrations-production
 POST https://clone-tabnews.maxcode42.com.br/api/v1/migrations
 
 ###
+# @name exec-create-user-homologação
+POST https://clone-tabnews-git-feat-user-model-josuellions-projects.vercel.app/api/v1/users
+Content-Type: application/json
+
+{
+  "username": "josuellopes",
+  "email": "josuellopes@email.com.br",
+  "password": "senhaforte123"
+}
+###
+
+# @name exec-find-user-homologação
+GET https://clone-tabnews-git-feat-user-model-josuellions-projects.vercel.app/api/v1/users/josuellopes
+
+###
+
+###
+# @name exec-create-user-production
+POST https://clone-tabnews.maxcode42.com.br/api/v1/users
+Content-Type: application/json
+
+{
+  "username": "josuellopes",
+  "email": "josuellopes@email.com.br",
+  "password": "senhaforte123"
+}
+###
+
+# @name exec-find-user-production
+GET https://clone-tabnews.maxcode42.com.br/api/v1/users/josuellopes
+
