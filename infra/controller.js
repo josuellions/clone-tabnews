@@ -3,6 +3,7 @@ import {
   MethodNotAllowedError,
   ValidationError,
   NotFoundError,
+  UnauthorizedError,
 } from "./errors";
 
 function onNoMatchHandler(_, res) {
@@ -12,12 +13,16 @@ function onNoMatchHandler(_, res) {
 }
 
 function onErrorHandler(error, _, res) {
-  if (error instanceof ValidationError || error instanceof NotFoundError) {
+  if (
+    error instanceof ValidationError ||
+    error instanceof NotFoundError ||
+    error instanceof UnauthorizedError
+  ) {
     return res.status(error.statusCode).json(error);
   }
 
   const publicErrorObject = new InternalServerError({
-    statusCode: error.statusCode,
+    //statusCode: error.statusCode,
     cause: error,
   });
 

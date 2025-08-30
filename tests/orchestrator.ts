@@ -41,10 +41,10 @@ async function runPendingMigrations() {
 async function createUser(userObject) {
   const userNewObject = {
     username:
-      userObject.username || faker.internet.username().replace(/[_.-]/g, ""),
-    email: userObject.email || faker.internet.email(),
+      userObject?.username || faker.internet.username().replace(/[_.-]/g, ""),
+    email: userObject?.email || faker.internet.email(),
     password:
-      userObject.password ||
+      userObject?.password ||
       faker.lorem
         .word({ length: { min: 10, max: 60 }, strategy: "shortest" })
         .trim(),
