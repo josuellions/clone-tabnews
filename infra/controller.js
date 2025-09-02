@@ -1,9 +1,13 @@
+import * as cookie from "cookie";
+
+import session from "models/session";
+
 import {
-  InternalServerError,
   MethodNotAllowedError,
+  InternalServerError,
+  UnauthorizedError,
   ValidationError,
   NotFoundError,
-  UnauthorizedError,
 } from "./errors";
 
 function onNoMatchHandler(_, res) {
@@ -31,7 +35,22 @@ function onErrorHandler(error, _, res) {
   res.status(publicErrorObject.statusCode).json(publicErrorObject);
 }
 
+function setSessionCookie(sessionToken, res) {
+  console.log(">> SET SESSION COOKIE: ");
+  const setCookie = cookie.serialize("session_id", sessionToken, {
+    path: "/",
+    httpOnly: true, //ativa somente site responsável acessar através das requisições pelo head
+    secure: process.env.NODE_ENV === "production",
+    maxAge: session.EXPIRATION_IN_MILLISECONDS / 1000, // convertendo para segundo
+    //expires: new Date(newSession.expires_at),
+  });
+
+  //res.setHeader("Set-Cookie", `session_id=${newSession.token}; Path=/`);
+  res.setHeader("Set-Cookie", setCookie);
+}
+
 const controller = {
+  setSessionCookie,
   errorHandlers: {
     onNoMatch: onNoMatchHandler,
     onError: onErrorHandler,

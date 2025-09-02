@@ -124,6 +124,32 @@ async function runSelectQuery(username) {
   return result.rows[0];
 }
 
+async function runSelectQueryUserId(id) {
+  const result = await database.query({
+    text: `
+          SELECT 
+            *
+          FROM
+            users 
+          WHERE
+            id = $1
+          LIMIT
+            1
+          ;
+          `,
+    values: [id],
+  });
+
+  if (result.rowCount === 0) {
+    throw new NotFoundError({
+      message: "O id informado sem cadastro.",
+      action: "Informe corretamente id do usuário para realizar busca.",
+    });
+  }
+
+  return result.rows[0];
+}
+
 async function runSelectQueryEmail(email) {
   const result = await database.query({
     text: `
@@ -151,6 +177,12 @@ async function runSelectQueryEmail(email) {
 
 async function findOneByUserName(username) {
   const userFound = await runSelectQuery(username);
+
+  return userFound;
+}
+
+async function findOneById(id) {
+  const userFound = await runSelectQueryUserId(id);
 
   return userFound;
 }
@@ -197,6 +229,7 @@ async function update(username, userInputValues) {
 const user = {
   create,
   update,
+  findOneById,
   findOneByEmail,
   findOneByUserName,
 };

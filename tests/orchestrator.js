@@ -3,6 +3,7 @@ import { faker } from "@faker-js/faker";
 
 import database from "infra/database";
 import migrator from "models/migrator";
+import session from "models/session";
 import user from "models/user";
 
 const STATUS_SUCCESS = 200;
@@ -55,10 +56,15 @@ async function createUser(userObject) {
   return result;
 }
 
+async function createSession(userId) {
+  return await session.create(userId);
+}
+
 const orchestrator = {
   runPendingMigrations,
   waitForAllServices,
   clearDatabase,
+  createSession,
   createUser,
 };
 

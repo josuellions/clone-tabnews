@@ -1,39 +1,97 @@
+# Variables
+@BASE_URL_LOCAL = http://localhost:3000
+@BASE_URL_PRODUCTION = https://clone-tabnews.maxcode42.com.br
+@BASE_URL_STAGING =https://clone-tabnews-git-feat-hash-password-josuellions-projects.vercel.app
+
+
+###
+## LOCAL
 # @name status-conection
-GET http://localhost:3000/api/v1/status
+GET {{BASE_URL_LOCAL}}/api/v1/status
 
 ###
 
 # @name exec-simulation-migrations
-GET http://localhost:3000/api/v1/migrations
+GET {{BASE_URL_LOCAL}}/api/v1/migrations
 
 ###
 
 # @name exec-test-migrations
-PUT http://localhost:3000/api/v1/migrations
+PUT {{BASE_URL_LOCAL}}/api/v1/migrations
 
 ###
 
 # @name exec-efect-migrations
-POST http://localhost:3000/api/v1/migrations
+POST {{BASE_URL_LOCAL}}/api/v1/migrations
 
 ###
 
+###
+# @name exec-create-user-local
+POST {{BASE_URL_LOCAL}}/api/v1/users
+Content-Type: application/json
+
+{
+  "username": "josuel.lopes",
+  "email": "josuel.lopes@email.com.br",
+  "password": "senhaforte123"
+}
+###
+
+# @name exec-find-users-local
+GET {{BASE_URL_LOCAL}}/api/v1/users/josuel.lopes
+
+###
+
+# @name exec-find-user-local
+GET {{BASE_URL_LOCAL}}/api/v1/user/josuel.lopes
+
+
+###
+## STAGING
+# @name exec-create-user-homologação
+POST {{BASE_URL_STAGING}}/api/v1/users
+Content-Type: application/json
+
+{
+  "username": "josuel.lopes",
+  "email": "josuel.lopes@email.com.br",
+  "password": "senhaforte123"
+}
+###
+
+###
+# @name exec-update-user-homologação
+PATCH {{BASE_URL_STAGING}}/api/v1/users/josuellopes
+Content-Type: application/json
+
+{
+  "password": "senhaforte123update"
+}
+
+###
+# @name exec-find-user-homologação
+GET {{BASE_URL_STAGING}}/api/v1/users/josuellopes
+
+###
+
+###
 ## PRODUCAO
 # @name status-conection
-GET https://clone-tabnews.maxcode42.com.br/api/v1/status
+GET {{BASE_URL_PRODUCTION}}/api/v1/status
 
 ###
 
 # @name exec-simulation-migrations
-GET https://clone-tabnews.maxcode42.com.br/api/v1/migrations
+GET {{BASE_URL_PRODUCTION}}/api/v1/migrations
 
 ###
 # @name exec-effect-migrations-production
-POST https://clone-tabnews.maxcode42.com.br/api/v1/migrations
+POST {{BASE_URL_PRODUCTION}}/api/v1/migrations
 
 ###
-# @name exec-create-user-homologação
-POST https://clone-tabnews-git-feat-user-model-josuellions-projects.vercel.app/api/v1/users
+# @name exec-create-user-production
+POST {{BASE_URL_PRODUCTION}}/api/v1/users
 Content-Type: application/json
 
 {
@@ -43,23 +101,15 @@ Content-Type: application/json
 }
 ###
 
-# @name exec-find-user-homologação
-GET https://clone-tabnews-git-feat-user-model-josuellions-projects.vercel.app/api/v1/users/josuellopes
-
 ###
-
-###
-# @name exec-create-user-production
-POST https://clone-tabnews.maxcode42.com.br/api/v1/users
+# @name exec-update-user-production
+PATCH  {{BASE_URL_PRODUCTION}}/api/v1/users/josuellopes
 Content-Type: application/json
 
 {
-  "username": "josuellopes",
-  "email": "josuellopes@email.com.br",
-  "password": "senhaforte123"
+  "password": "senhaforte123Update"
 }
 ###
 
 # @name exec-find-user-production
-GET https://clone-tabnews.maxcode42.com.br/api/v1/users/josuellopes
-
+GET {{BASE_URL_PRODUCTION}}/api/v1/users/josuellopes
