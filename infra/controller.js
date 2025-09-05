@@ -17,11 +17,12 @@ function onNoMatchHandler(_, res) {
 }
 
 function onErrorHandler(error, _, res) {
-  if (
-    error instanceof ValidationError ||
-    error instanceof NotFoundError ||
-    error instanceof UnauthorizedError
-  ) {
+  if (error instanceof ValidationError || error instanceof NotFoundError) {
+    return res.status(error.statusCode).json(error);
+  }
+
+  if (error instanceof UnauthorizedError) {
+    clearSessionCookie(res);
     return res.status(error.statusCode).json(error);
   }
 
@@ -36,7 +37,6 @@ function onErrorHandler(error, _, res) {
 }
 
 function setSessionCookie(sessionToken, res) {
-  console.log(">> SET SESSION COOKIE: ");
   const setCookie = cookie.serialize("session_id", sessionToken, {
     path: "/",
     httpOnly: true, //ativa somente site responsável acessar através das requisições pelo head
@@ -49,7 +49,19 @@ function setSessionCookie(sessionToken, res) {
   res.setHeader("Set-Cookie", setCookie);
 }
 
+function clearSessionCookie(res) {
+  const setCookie = cookie.serialize("session_id", "invalid", {
+    path: "/",
+    httpOnly: true, //ativa somente site responsável acessar através das requisições pelo head
+    secure: process.env.NODE_ENV === "production",
+    maxAge: -1, // invalida o cookie navegador
+  });
+
+  res.setHeader("Set-Cookie", setCookie);
+}
+
 const controller = {
+  clearSessionCookie,
   setSessionCookie,
   errorHandlers: {
     onNoMatch: onNoMatchHandler,
