@@ -7,6 +7,7 @@ import session from "models/session";
 import user from "models/user";
 
 const STATUS_SUCCESS = 200;
+const EMAIL_HTTP_URL = `${process.env.EMAIL_HTTP_HOST}:${process.env.EMAIL_HTTP_PORT}`;
 
 async function waitForAllServices() {
   async function waitForWebServices() {
@@ -28,7 +29,25 @@ async function waitForAllServices() {
     });
   }
 
+  async function waitForEmailServices() {
+    async function fetchEmailPage() {
+      const response = await fetch(EMAIL_HTTP_URL);
+
+      if (response.status !== STATUS_SUCCESS) {
+        throw Error();
+      }
+    }
+
+    return retry(fetchEmailPage, {
+      retries: 100, // qtd tentativas
+      maxTimeout: 1000, //tempo que aguarda para executar novamente
+      minTimeout: 100, //tempo de espera entre tentativas
+      maxRetryTime: 6000, //máximo tempo tentativas execução
+    });
+  }
+
   await waitForWebServices();
+  await waitForEmailServices();
 }
 
 async function clearDatabase() {
@@ -60,11 +79,35 @@ async function createSession(userId) {
   return await session.create(userId);
 }
 
+async function deleteAllEmails() {
+  await fetch(`${EMAIL_HTTP_URL}/messages`, {
+    method: "DELETE",
+  });
+}
+
+async function getLastEmail() {
+  const emailListResponse = await fetch(`${EMAIL_HTTP_URL}/messages`);
+  const emailListBody = await emailListResponse.json();
+  const lastEmailItem = emailListBody.pop();
+
+  const emailTextResponse = await fetch(
+    `${EMAIL_HTTP_URL}/messages/${lastEmailItem.id}.plain`,
+  );
+
+  const emailTextBody = await emailTextResponse.text();
+
+  lastEmailItem.text = emailTextBody;
+
+  return lastEmailItem;
+}
+
 const orchestrator = {
   runPendingMigrations,
   waitForAllServices,
+  deleteAllEmails,
   clearDatabase,
   createSession,
+  getLastEmail,
   createUser,
 };
 
